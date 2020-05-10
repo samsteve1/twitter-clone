@@ -2,9 +2,11 @@
 
 namespace App;
 
+use App\Tweet;
+use App\Follower;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -44,5 +46,16 @@ class User extends Authenticatable
     public function followers()
     {
         return $this->belongsToMany(User::class, 'followers', 'following_id', 'user_id');
+    }
+    /**
+     * Get tweet from users following
+     *
+     * @return void
+     */
+    public function tweetsFromFollowing()
+    {
+        return $this->hasManyThrough(
+            Tweet::class, Follower::class, 'user_id', 'user_id', 'id', 'following_id'
+        );
     }
 }
