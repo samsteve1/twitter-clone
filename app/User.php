@@ -29,7 +29,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
+    /**
+     * Return the user's avatar
+     *
+     * @return void
+     */
+    public function avatar()
+    {
+        return 'https://api.adorable.io/avatars/285/' . $this->username . 'png';
+    }
     /**
      * The attributes that should be cast to native types.
      *
