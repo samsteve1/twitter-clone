@@ -3,13 +3,16 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+import Vuex from 'vuex'
+import VueObserveVisibility from 'vue-observe-visibility'
 
 require('./bootstrap');
 
 window.Vue = require('vue');
 
-import Vuex from 'vuex'
+
 Vue.use(Vuex)
+Vue.use(VueObserveVisibility)
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
