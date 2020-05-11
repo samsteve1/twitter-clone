@@ -4,19 +4,17 @@
     </div>
 </template>
 <script>
-import axios from 'axios'
+import { mapGetters, mapActions} from 'vuex'
 export default {
-    data() {
-        return {
-            tweets: []
-        }
+    computed: {
+        ...mapGetters({
+            tweets: 'timeline/tweets'
+        })
     },
     methods: {
-        async getTweets(){
-            await axios.get('/api/timeline').then((response) => {
-                this.tweets = response.data.data
-            })
-        }
+        ...mapActions({
+            'getTweets' : 'timeline/getTweets'
+        })
     },
     mounted() {
         this.getTweets()
