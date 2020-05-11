@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Tweet extends Model
 {
     /**
+     * Undocumented variable
+     *
+     * @var array
+     */
+    protected $fillable = ['body'];
+    /**
      * Tweets user
      *
      * @return void

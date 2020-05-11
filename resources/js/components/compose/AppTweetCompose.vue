@@ -1,14 +1,16 @@
 <template>
   <div>
-    <form class="flex">
+    <form class="flex" @submit.prevent="tweet">
       <div class="mr-3">
         <img :src="$user.avatar" class="w-12 rounded-full" />
       </div>
       <div class="flex-grow">
         <textarea
-          class="bg-gray-900 w-full outline-none text-lg resize-none mb-2"
+          class="bg-gray-900 w-full outline-none text-lg text-gray-300 resize-none mb-2"
           placeholder="What's happening"
           autofocus
+          v-model="form.body"
+          @keypress.enter="tweet"
         ></textarea>
         <div class="flex justify-between">
             <div>
@@ -24,5 +26,22 @@
 </template>
 
 <script>
-export default {};
+import axios from 'axios'
+export default {
+    data() {
+        return {
+            form:{
+                body: ''
+            }
+        }
+    },
+    methods: {
+        async tweet() {
+            await axios.post('api/tweets', this.form)
+              .then(() =>{
+                this.form.body = ''
+              })
+        }
+    },
+};
 </script>

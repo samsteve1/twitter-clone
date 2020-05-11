@@ -56,6 +56,15 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'followers', 'following_id', 'user_id');
     }
     /**
+     * Users' tweets
+     *
+     * @return void
+     */
+    public function tweets()
+    {
+        return $this->hasMany(Tweet::class);
+    }
+    /**
      * Get tweet from users following
      *
      * @return void
