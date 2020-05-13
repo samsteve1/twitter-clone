@@ -15,10 +15,12 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script>
+        @auth
         window.User = {
             id: {{ optional(auth()->user())->id }},
             avatar: '{{ optional(auth()->user())->avatar() }}'
         }
+        @endauth
     </script>
 </head>
 <body>
